@@ -11,8 +11,13 @@ while (x == y)
     something();
     something_else();
 }
+```
 
 ```
+using FileStream fileStream = new FileStream(filePath, FileMode.Open);
+using StreamReader reader = new StreamReader(fileStream);
+```
+
 
 2. We use four spaces of indentation (no tabs).
 3. We use `_camelCase` for internal and private fields and use `readonly` where possible. Prefix internal and private instance fields with `_`, static fields with `s_` and thread static fields with `t_`. When used on static fields, `readonly` should come after `static` (e.g. `static readonly` not `readonly static`).  Public fields should be used sparingly and should use PascalCasing with no prefix when used.
@@ -52,6 +57,20 @@ public string FirstName
 8. Avoid spurious free spaces.
    For example avoid `if (someVar == 0)...`, where the dots mark the spurious free spaces.
    Consider enabling "View White Space (Ctrl+R, Ctrl+W)" or "Edit -> Advanced -> View White Space" if using Visual Studio to aid detection.
+
+```
+if ( someVar == 0 ) 
+{
+   Console.WriteLine("Variable is zero.");
+}
+
+for ( int i = 0; i < anotherVar; i++ ) {
+   Console.WriteLine($"Current count: {i}");
+}
+
+TestFunction (someVar);
+```
+
 9. If a file happens to differ in style from these guidelines (e.g. private members are named `m_member`
    rather than `_member`), the existing style in that file takes precedence.
 10. We only use `var` when the type is explicitly named on the right-hand side, typically due to either `new` or an explicit cast, e.g. `var stream = new FileStream(...)` not `var stream = OpenStandardInput()`.
@@ -80,7 +99,7 @@ public string FirstName
     - Braces may be omitted only if the body of *every* block associated with an `if`/`else if`/.../`else` compound statement is placed on a single line.
 19. Make all internal and private types static or sealed unless derivation from them is required.  As with any implementation detail, they can be changed if/when derivation is required in the future.
 
----Ours
+### Ours
 
 20. If there is some Result pattern which contains IsSuccess and IsFailure properties, checking if(IsSuccess is true), true is redundant not need to have to use it.
 21. Variable names should be self-describing without any prefixes or suffixes determining accessibility or type.
@@ -90,7 +109,7 @@ public string FirstName
 [BAD] var usersDict = GetUsers();
 
 [GOOD] IReadOnlyList<User> users = GetUsers();
-[GOOD] IDictionary<string, User> = GetUsers();
+[GOOD] IDictionary<string, User> users = GetUsers();
 ```
 
 
